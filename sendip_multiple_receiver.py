@@ -14,7 +14,7 @@ from email.MIMEText import MIMEText
 def get_ip():
     
     return urllib2.urlopen('http://ip.42.pl/raw').read()
-    
+time.sleep(30)    
 content = str(get_ip())
 last_ip = content
 SMTPserver = 'outbound.att.net'
