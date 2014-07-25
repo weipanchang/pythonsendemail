@@ -19,7 +19,7 @@ content = str(get_ip())
 last_ip = content
 SMTPserver = 'outbound.att.net'
 sender =     'weipanchang@att.net'
-destination = ['wchang@pingshow.net', 'weipanchang@yahoo.com']
+destination = ['changvan@mac.com', 'yangg_yuann@yahoo.com']
 
 USERNAME = "weipanchang@att.net"
 PASSWORD = "Taipei0880"
