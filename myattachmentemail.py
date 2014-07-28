@@ -3,13 +3,18 @@
 #import smtplib
 from smtplib import SMTP_SSL as SMTP 
 import base64
+import urllib2
+import sys
+import os
+import re
+#import time
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 #from smtplib import SMTP
 
 
-FILENAME="Allen.jpg"
+FILENAME="test.bat"
 FROMADDR = 'weipanchang@att.net'
 LOGIN    = FROMADDR
 PASSWORD = "Taipei0880"
@@ -21,9 +26,9 @@ msg = MIMEMultipart()
 msg['Subject'] = 'Email with Attachemnt'
 msg['From'] = FROMADDR
 msg['Reply-to'] = LOGIN
-msg['To'] = TOADDRS[0]
+#msg['To'] = TOADDRS[0]
 
-filename = "array.py"
+#filename = "array.py"
 # Read a file and encode it into base64 format
 msg.preamble = 'Multipart massage.\n'
 
@@ -36,10 +41,10 @@ part = MIMEApplication(open(FILENAME,"rb").read())
 part.add_header('Content-Disposition', 'attachment', filename=FILENAME)
 msg.attach(part)
 
-server = smtplib.SMTP('smtp.comcast.net', 587)
+server = SMTP(SMTPserver)
 server.set_debuglevel(1)
 server.ehlo()
-server.starttls()
+#server.starttls()
 server.login(LOGIN, PASSWORD)
 server.sendmail(FROMADDR, TOADDRS, msg.as_string())
 server.quit()
