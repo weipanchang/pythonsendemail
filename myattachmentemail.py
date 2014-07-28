@@ -1,17 +1,20 @@
 #!/usr/bin/python
 
-import smtplib
+#import smtplib
+from smtplib import SMTP_SSL as SMTP 
 import base64
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
-from smtplib import SMTP
+#from smtplib import SMTP
+
 
 FILENAME="Allen.jpg"
-FROMADDR = "weipanchang@comcast.net"
+FROMADDR = 'weipanchang@att.net'
 LOGIN    = FROMADDR
-PASSWORD = "nov18168"
-TOADDRS  = ["weipanchang@yahoo.com", "weipanchang@comcast.net"]
+PASSWORD = "Taipei0880"
+SMTPserver = 'outbound.att.net'
+TOADDRS  = ["weipanchang@yahoo.com", "wchang@pingshow.net"]
 
 #==========================================
 msg = MIMEMultipart()

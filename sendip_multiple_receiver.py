@@ -11,9 +11,9 @@ from smtplib import SMTP_SSL as SMTP       # this invokes the secure SMTP protoc
 # from smtplib import SMTP                  # use this for standard SMTP protocol   (port 25, no encryption)
 from email.MIMEText import MIMEText
 
-def get_ip():
-    
+def get_ip():    
     return urllib2.urlopen('http://ip.42.pl/raw').read()
+
 time.sleep(30)    
 content = str(get_ip())
 last_ip = content
