@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 
-FILENAME1="Cups.mp3"
+FILENAME1="multiple_attachment_email.py"
 FILENAME2="test.bat"
 FILES=[FILENAME1, FILENAME2]
 FROMADDR = 'weipanchang@att.net'
