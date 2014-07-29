@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 
 FILENAME1="Cups.mp3"
 FILENAME2="test.bat"
-FILE=[FILENAME1, FILENAME2]
+FILES=[FILENAME1, FILENAME2]
 FROMADDR = 'weipanchang@att.net'
 LOGIN    = FROMADDR
 PASSWORD = "Taipei0880"
@@ -37,7 +37,7 @@ msg.attach(part)
 msg.preamble = 'Multipart massage.\n'
 
 # Read a file and encode it into base64 format
-for FILENAME in FILE:
+for FILENAME in FILES:
 # This is the binary part(The Attachment):
     part = MIMEApplication(open(FILENAME,"rb").read())
     part.add_header('Content-Disposition', 'attachment', filename=FILENAME)
