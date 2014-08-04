@@ -28,31 +28,32 @@ def strip_tags(html):
         s.feed(html)
         return s.get_data()
 
-FILENAME1="multiple_attachment_email.py"
-FILENAME2="test.bat"
-FILES=[FILENAME1, FILENAME2]
 FROMADDR = 'weipanchang@att.net'
 LOGIN    = FROMADDR
 PASSWORD = "Taipei0880"
 SMTPserver = 'outbound.att.net'
-TOADDRS  = ["weipanchang@yahoo.com", "wchang@pingshow.net"]
+TOADDRS  = ["weipanchang@yahoo.com", "adelbertc@gmail.com"]
 
-htmlmsgtext = """<h2>This is my message body in HTML...WOW!!!!!</h2>
+
+FILENAME1="multiple_attachment_email.py"
+FILENAME2="html_image_attachmentemail.py"
+FILES=[FILENAME1, FILENAME2]
+IMAGEFILE='test.jpeg'
+
+
+htmlmsgtext = """
+<h2>This is my message body in HTML...WOW!!!!!</h2>
 <p>\
-Hey, Hey, Ho, Ho, got a paragraph here. A lovely paragraph it is.\
-You've never seen a better paragraph than this.\
-I make some of the best paragraphs you have ever seen.\
-Hey, Hey, Ho, Ho, got a paragraph here. A lovely paragraph it is.\
-You've never seen a better paragraph than this.\
-I make some of the best paragraphs you have ever seen.\
+Here is my python script that can send out attachments, embedded image
 </p>
 <ul>
-<li>This is a list item</li>
-<li>This is another list item</li>
-<li>And yet another list item, pretty big list</li>
-<li>OMG this is a long list!</li>
+<li>you are bad/li>
+<li>you are bad boy</li>
+<li>you are very bad boy</li>
+<li>you are very very bad boy</li>
 </ul>
-<p><strong>Here are my attachments:</strong></p><br />"""
+<p><strong>Here are my attachments:</strong></p><br />
+"""
 
 #==========================================
 
@@ -70,7 +71,7 @@ server.set_debuglevel(1)
 server.ehlo()
 
 server.login(LOGIN, PASSWORD)
-part = MIMEText("Hello im sending an email from a python program")
+part = MIMEText("Hello I am sending an email from a python program")
 msg.attach(part)
 
 msg.preamble = 'Multipart massage.\n'
@@ -83,17 +84,18 @@ msg.attach(body)
 part = MIMEText('<b>Some <i>HTML</i> text</b> and an image.<br><img src="cid:image1"><br>Nifty!', 'html')
 msg.attach(part)
 
-fp = open('test.jpeg', 'rb')
+fp = open(IMAGEFILE, 'rb')
 msgImage = MIMEImage(fp.read())
 fp.close()
 msgImage.add_header('Content-ID', '<image1>')
+msgImage.add_header('Content-Disposition', 'inline', filename=IMAGEFILE)
 msg.attach(msgImage)
 
 # Read a file and encode it into base64 format
 for FILENAME in FILES:
 # This is the binary part(The Attachment):
     part = MIMEApplication(open(FILENAME,"rb").read())
-    part.add_header('Content-Disposition', 'attachment', filename=FILENAME)
+    part.add_header('Content-Disposition', 'inline', filename=FILENAME)
     msg.attach(part)
 
 server.sendmail(FROMADDR, TOADDRS, msg.as_string())
