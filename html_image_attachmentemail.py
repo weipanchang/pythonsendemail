@@ -79,7 +79,7 @@ if htmlmsgtext !="":
     body.attach(MIMEText(htmlmsgtext, 'html'))
     msg.attach(body)
 
-part = MIMEText("Hello I am sending an email from a python program")
+part = MIMEText("The inline images file are show below  ")
 msg.attach(part)
 
 msg.preamble = 'Multipart massage.\n'
